@@ -1,24 +1,23 @@
-import logo from './logo.svg';
+import { ThemeProvider } from '@mui/material';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
+import DetailMovie from './pages/DetailMovie';
+import HomePage from './pages/HomePage';
+import { Theme } from './Theme';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <ThemeProvider theme={Theme}>
+          <Routes>
+            <Route path='*' element={<><h1 className='text-center'>404 ERROR</h1></>}/>
+            <Route path='/' element={<HomePage/>}></Route>
+            <Route path='/detail/:id' element={<DetailMovie/>}></Route>
+          </Routes>
+        </ThemeProvider>
+      </BrowserRouter>
+    </>
   );
 }
 
